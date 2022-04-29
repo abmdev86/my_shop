@@ -1,32 +1,33 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:my_shop/Header/Header.dart';
+import 'package:my_shop/modules/user_home/user_home.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
-  runApp(const MyShopApp(
-    userName: "Auroiah",
-  ));
+  runApp(const MyShopApp());
 }
 
-class MyShopApp extends StatelessWidget {
-  const MyShopApp({required this.userName, Key? key}) : super(key: key);
+final ThemeData kIOSTheme = ThemeData(
+  primarySwatch: Colors.amber,
+  primaryColor: Colors.black,
+);
 
-  final userName;
+// Android ThemeData
+final ThemeData kDefaultTheme = ThemeData(
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
+      .copyWith(secondary: Colors.amberAccent[400]),
+);
+
+class MyShopApp extends StatelessWidget {
+  const MyShopApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: userName + ' Shop',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("$userName's Shop"),
-        ),
-        body: Column(
-          children: [
-
-            Header(userName: userName),
-          ],
-        ),
-      ),
-    );
+        title: 'My Shop App',
+        theme: defaultTargetPlatform == TargetPlatform.iOS
+            ? kIOSTheme
+            : kDefaultTheme,
+        home: const UserHome());
   }
 }

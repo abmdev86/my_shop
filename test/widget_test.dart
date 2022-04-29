@@ -9,12 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:my_shop/main.dart';
+import 'package:my_shop/widgets/header.dart';
 const _testUserName = "Auroiah";
 
 void main() {
   testWidgets('MyShopApp has the userName displayed', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyShopApp(userName: _testUserName));
+    await tester.pumpWidget(const Header(userName: _testUserName));
 
     // Verify that our counter starts at 0.
     expect(find.text('Hello $_testUserName'), findsOneWidget);
